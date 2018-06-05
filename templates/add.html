@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Tasks</a></li>
+  <li class="breadcrumb-item active">Add</li>
+{% endblock %}
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    {% include 'includes/form.html' %}
+    <button type="submit" class="btn btn-primary btn-block">Add</button>
+  </form>
+{% endblock %}

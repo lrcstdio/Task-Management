@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Tasks</a></li>
+  <li class="breadcrumb-item active">Revise</li>
+{% endblock %}
+
+{% block body %}
+<div class="alert alert-info">
+ <p class="text-info" style="font-size:20px">The old task is <strong>'{{ oldtask }}'</strong></p>
+</div>
+<form method="post">
+  {% csrf_token %}
+  {% include 'includes/form.html' %}
+  <button type="submit" class="btn btn-primary btn-block">Sure</button>
+</form>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Tasks</li>
+{% endblock %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+    <ul class="list-group">
+      {% for task in user.tasks.all %}
+        <li class="list-group-item"><span><strong>{{ forloop.counter }}.</strong></span>{{ task.description }}
+          <a href="{% url 'revise' task.id %}" class="btn btn-primary btn-xs badge ml-2" style="float:right">Revise</a>
+          <a href="{% url 'delete' task.id %}" class="btn btn-primary btn-xs badge ml-2" style="float:right">Delete</a>
+        </li>
+      {% endfor %}
+    </ul>
+    <br/>
+    <a href="{% url 'query' %}" class="btn btn-primary btn-lg mr-2" style="float:right">Query</a>
+    <a href="{% url 'add' %}" class="btn btn-primary btn-lg mr-2" style="float:right">Add</a>
+  {% else %}
+    <p class="text-info" style="">This application requires you to login</p>
+  {% endif%}
+{% endblock %}

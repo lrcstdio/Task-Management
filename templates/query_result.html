@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Tasks</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'query' %}">Query</a></li>
+  <li class="breadcrumb-item active">Result</li>
+{% endblock %}
+{% block content %}
+    <p class="text-info">The query results are as follows</p><br/>
+    {% if tasks.count %}
+      {% for task in tasks %}
+        <li class="list-group-item">{{ task.description }}</li>
+      {% endfor %}
+    {% else %}
+      <p class="text-muted" style="font-size:30px">There is nothing to find!</p>
+    {% endif %}
+    <a class="btn btn-primary btn-block" href=" {% url 'query' %}">Ok</a>
+{% endblock %}
