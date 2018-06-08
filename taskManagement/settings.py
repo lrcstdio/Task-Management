@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 from decouple import config, Csv
-import dj_database_url
+import dj_database_url    #调用上述库配置更加简洁
 
 import os
 
@@ -127,11 +127,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static'),
 ]
-STATIC_ROOT = '/home/tasks/staticfiles/'
-LOGOUT_REDIRECT_URL='home'
-LOGIN_REDIRECT_URL ='home'
-LOGIN_URL = 'login'
+#STATIC_ROOT = '/home/tasks/staticfiles/'   #静态文件收集到该目录
+LOGOUT_REDIRECT_URL='home'                  #登出后重定向回主页
+LOGIN_REDIRECT_URL ='home'                  #登入后重定向回主页
+LOGIN_URL = 'login'                         #登入视图对应的url为login
 
+#邮件相关的配置
 EMAIL_BACKEND = config('EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
 EMAIL_HOST = config('EMAIL_HOST', default='')
 EMAIL_PORT = config('EMAIL_PORT', default=587, cast=int)
